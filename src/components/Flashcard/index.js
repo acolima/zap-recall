@@ -2,28 +2,31 @@ import { useState } from "react"
 import turnImg from "../../assets/turn.png"
 import "./style.css"
 
-export default function Card({question, answer, setQuestionIndex, questionIndex, numberOfQuestions}){
+export default function Card({question, answer, setQuestionIndex, questionIndex, numberOfQuestions, setResultPage}){
   const [showQuestion, setShowQuestion] = useState(true)
   const [showAnswer, setShowAnswer] = useState(false)
   const [borderColor, setBorderColor] = useState("")
   const [nextQuestion, setNextQuestion] = useState(false)
+  const [incorrectAnswer, setIncorrectAnswer] = useState(false)
   let color = ""
-
 
   function turnFlashcard(){
     setShowQuestion(false)
     setShowAnswer(true)
   }
 
-  function changeBorder(button){
-    color = "border-" + button
+  function handleAnswer(answer){
+    color = "border-" + answer
     setBorderColor(color)
     setNextQuestion(true)
+    if(answer === "incorrect")
+      setIncorrectAnswer(true)
   }
 
   function showNextQuestion(){
     if(questionIndex === numberOfQuestions-1){ 
-      alert("acabou")
+      if(incorrectAnswer) setResultPage("failure")
+      else setResultPage("sucess")
     }
     else{
       setQuestionIndex(questionIndex + 1)
@@ -37,12 +40,12 @@ export default function Card({question, answer, setQuestionIndex, questionIndex,
   return(
     <div className={`card ${borderColor}`}>
       <div className="card-header">
-        <div></div>
+        <span></span>
         {(showAnswer)?
           <span className="question-title">{question}</span> :
           <span className="question-title"></span>          
         }
-        <span className="card-number">{questionIndex + 1}/8</span>
+        <span className="question-number">{questionIndex + 1}/8</span>
       </div>
       {(showQuestion)? 
         <div className="question">{question}</div> :
@@ -57,10 +60,10 @@ export default function Card({question, answer, setQuestionIndex, questionIndex,
             <img src={turnImg} alt="turn" />
           </div>) :
           (<div className="buttons">
-            <button onClick={() => changeBorder("neutral")} className="neutral">Aprendi agora</button>
-            <button onClick={() => changeBorder("incorrect")} className="incorrect">Não lembrei</button>
-            <button onClick={() => changeBorder("correct-effort")} className="correct-effort">Lembrei com esforço</button>
-            <button onClick={() => changeBorder("correct")} className="correct">Zap!</button>
+            <button onClick={() => handleAnswer("neutral")} className="neutral">Aprendi agora</button>
+            <button onClick={() => handleAnswer("incorrect")} className="incorrect">Não lembrei</button>
+            <button onClick={() => handleAnswer("correct-effort")} className="correct-effort">Lembrei com esforço</button>
+            <button onClick={() => handleAnswer("correct")} className="correct">Zap!</button>
           </div>)
         )    
       }

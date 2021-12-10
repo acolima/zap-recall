@@ -8,7 +8,6 @@
 
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
 }
 
 .card-header {
@@ -25,14 +24,13 @@
   line-height: 14px;
 }
 
-.card-number {
+.question-number {
   font-size: 18px;
   font-weight: 400;
   line-height: 21px;
 }
 
 .question {
-  width: 100%;
   height: 490px;
 
   display: flex;
@@ -42,10 +40,10 @@
   font-size: 28px;
   font-weight: 700;
   line-height: 33px;
+  text-align: center;
 }
 
 .turn {
-  width: 100%;
   height: 50px;
 
   display: flex;
@@ -62,7 +60,7 @@
 }
 
 .answer {
-  height: 474px;
+  height: 494px;
 
   padding: 0 50px;
 
@@ -108,7 +106,7 @@
 }
 
 .border-neutral {
-  border: 5px solid #000000;
+  outline: 5px solid #000000;
   box-shadow: 0px 8px 24px 0px #0000001f;
 }
 
@@ -117,7 +115,7 @@
 }
 
 .border-incorrect {
-  border: 5px solid #f64848;
+  outline: 5px solid #f64848;
   box-shadow: 0px 8px 24px 0px #f648481f;
 }
 
@@ -126,7 +124,7 @@
 }
 
 .border-correct-effort {
-  border: 5px solid #62db38;
+  outline: 5px solid #62db38;
   box-shadow: 0px 8px 24px 0px #62db381f;
 }
 
@@ -135,6 +133,6 @@
 }
 
 .border-correct {
-  border: 5px solid #ffef61;
+  outline: 5px solid #ffef61;
   box-shadow: 0px 8px 24px 0px #ffef611f;
 }

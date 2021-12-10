@@ -2,9 +2,10 @@ import { useState } from "react";
 import Card from "./Flashcard";
 import LogoMini from "./LogoMini";
 
-export default function Deck(){
+export default function Deck({setResultPage}){
   const [questionIndex, setQuestionIndex] = useState(0)
-  let numberOfQuestions = 0; 
+  let numberOfQuestions = 0;
+  
   const questions = [
     {
       question: "O que é JSX?",
@@ -39,16 +40,18 @@ export default function Deck(){
       answer: "dizer para o React quais informações quando atualizadas devem renderizar a tela novamente",
     },
   ]
+  
   numberOfQuestions = questions.length;
 
   const questionsArray = questions.map((question) => (
     <Card
       {...question}
-        setQuestionIndex={setQuestionIndex}
-        questionIndex={questionIndex}
-        numberOfQuestions={numberOfQuestions}
-      />
-    ))
+      setQuestionIndex={setQuestionIndex}
+      questionIndex={questionIndex}
+      numberOfQuestions={numberOfQuestions}
+      setResultPage={setResultPage}
+    />
+  ))
 
   return(
     <div className="deck">
