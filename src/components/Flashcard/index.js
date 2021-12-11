@@ -38,26 +38,22 @@ export default function Card({question, answer, setQuestionIndex, questionIndex,
   }
 
   return(
-    <div className={`card ${borderColor}`}>
+    <div className={`card ${borderColor}`} data-identifier="flashcard">
       <div className="card-header">
-        <span></span>
-        {(showAnswer)?
-          <span className="question-title">{question}</span> :
-          <span className="question-title"></span>          
-        }
-        <span className="question-number">{questionIndex + 1}/8</span>
+        <span className="question-title">{(showAnswer) ? question : ""}</span>
+        <span className="question-number" data-identifier="counter">{questionIndex + 1}/{numberOfQuestions}</span>
       </div>
       {(showQuestion)? 
         <div className="question">{question}</div> :
         <div className="answer">{answer}</div>
       }
       {(nextQuestion)?
-        (<div className="turn" onClick={() => showNextQuestion()}>
-          <img src={turnImg} alt="turn" />
+        (<div className="arrow" onClick={() => showNextQuestion()} data-identifier="arrow">
+          <img src={turnImg} alt="arrow" />
         </div>):
         ((showQuestion)?
-          (<div className="turn" onClick={() => turnFlashcard()}>
-            <img src={turnImg} alt="turn" />
+          (<div className="arrow" onClick={() => turnFlashcard()} data-identifier="arrow">
+            <img src={turnImg} alt="arrow" />
           </div>) :
           (<div className="buttons">
             <button onClick={() => handleAnswer("neutral")} className="neutral">Aprendi agora</button>
@@ -70,3 +66,5 @@ export default function Card({question, answer, setQuestionIndex, questionIndex,
     </div>
   )
 }
+
+// será que dá pra criar um componente Arrow?

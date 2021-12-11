@@ -8,7 +8,7 @@ export default function Homepage({setDisplay}) {
       <div className="logo">
         <img src={logoImg} alt="logo"/>
       </div>
-      <button className="btn-practice" onClick={() => setDisplay("deck")}>
+      <button className="btn-start" onClick={() => setDisplay("deck")} data-identifier="start-zap-recall">
         <span className="txt-button">Praticar React</span>
         <img className="next-img" src={nextImg} alt="next"/>
       </button>

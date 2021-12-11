@@ -14,7 +14,7 @@
   width: 171px;
 }
 
-.btn-practice {
+.btn-start {
   height: 72px;
   width: 345px;
 
@@ -29,13 +29,13 @@
   cursor: pointer;
 }
 
-.btn-practice span {
+.btn-start span {
   font-size: 20px;
   font-weight: 700;
   line-height: 23px;
 }
 
-.btn-practice img {
+.btn-pracstarttice img {
   width: 19px;
   height: 14px;
 }
