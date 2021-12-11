@@ -2,7 +2,18 @@ import { useState } from "react"
 import turnImg from "../../assets/turn.png"
 import "./style.css"
 
-export default function Card({question, answer, setQuestionIndex, questionIndex, numberOfQuestions, setShowResultPage, setIncorrectAnswer, incorrectAnswer}){
+export default function Flashcard(
+  { question, 
+    answer, 
+    setQuestionIndex, 
+    questionIndex, 
+    numberOfQuestions, 
+    setShowResultPage, 
+    incorrectAnswer,
+    setIncorrectAnswer,
+    setGoalCorrectAnswer,
+    goalCorrectAnswer
+  }){
   const [showQuestion, setShowQuestion] = useState(true)
   const [showAnswer, setShowAnswer] = useState(false)
   const [borderColor, setBorderColor] = useState("")
@@ -20,6 +31,8 @@ export default function Card({question, answer, setQuestionIndex, questionIndex,
     setNextQuestion(true)
     if(answer === "incorrect")
       setIncorrectAnswer(incorrectAnswer+1)
+    if(answer === "correct")
+      setGoalCorrectAnswer(goalCorrectAnswer-1)
   }
 
   function showNextQuestion(){

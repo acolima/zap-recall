@@ -13,3 +13,21 @@
   height: 217px;
   width: 171px;
 }
+
+.goal {
+  height: 49px;
+  width: 345px;
+
+  border-radius: 12px;
+  padding-left: 16px;
+
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 19px;
+}
+
+.home div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}

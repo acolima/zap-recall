@@ -1,16 +1,14 @@
 import nextImg from "../../assets/next.png"
 import "./style.css";
 
-export default function Button({type, setDisplay, setShowResultPage, btnText, setIncorrectAnswer}){
+export default function Button({type, setDisplay, setShowResultPage, btnText, setIncorrectAnswer, setGoalCorrectAnswer}){
   const showDeck = (type === "showDeck")
 
-  
   function handleRestart(){
-    if(type === "restart"){
-      setShowResultPage(false)
-      setDisplay("home")
-      setIncorrectAnswer(0)
-    }
+    setShowResultPage(false)
+    setDisplay("home")
+    setIncorrectAnswer(0)
+    setGoalCorrectAnswer("")
   }
   
   return(
