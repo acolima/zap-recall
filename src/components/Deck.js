@@ -2,7 +2,7 @@ import { useState } from "react";
 import Card from "./Flashcard";
 import LogoMini from "./LogoMini";
 
-export default function Deck({setResultPage}){
+export default function Deck({setShowResultPage, incorrectAnswer, setIncorrectAnswer}){
   const [questionIndex, setQuestionIndex] = useState(0)
   let numberOfQuestions = 0;
   
@@ -14,7 +14,7 @@ export default function Deck({setResultPage}){
     {
       question: "O React é ___",
       answer: "Uma biblioteca JavaScript para construção de interfaces",
-    },
+    },/*
     {
       question: "Componentes devem iniciar com __",
       answer: "letra maiúscula",
@@ -38,7 +38,7 @@ export default function Deck({setResultPage}){
     {
       question: "Usamos estado (state) para __",
       answer: "dizer para o React quais informações quando atualizadas devem renderizar a tela novamente",
-    },
+    },*/
   ]
   
   numberOfQuestions = questions.length;
@@ -49,7 +49,9 @@ export default function Deck({setResultPage}){
       setQuestionIndex={setQuestionIndex}
       questionIndex={questionIndex}
       numberOfQuestions={numberOfQuestions}
-      setResultPage={setResultPage}
+      setShowResultPage={setShowResultPage}
+      incorrectAnswer={incorrectAnswer}
+      setIncorrectAnswer={setIncorrectAnswer}
     />
   ))
 

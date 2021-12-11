@@ -1,7 +1,6 @@
 import Homepage from "./components/Homepage";
 import Deck from "./components/Deck";
-import Sucess from "./components/Sucess"
-import Failure from "./components/Failure"
+import Result from "./components/Result"
 import { useState } from "react";
 import "./css/reset.css"
 import "./css/style.css"
@@ -9,20 +8,18 @@ import "./css/style.css"
 
 export default function App(){
   const [display, setDisplay] = useState("home");
-  const [resultPage, setResultPage] = useState("")
+  const [showResultPage, setShowResultPage] = useState(false)
+  const [incorrectAnswer, setIncorrectAnswer] = useState(0)
 
   return(
     <>
-      {(resultPage === "")?
+      {(!showResultPage)?
         ((display === "home")?
           <Homepage setDisplay={setDisplay}/>
           :
-          <Deck setResultPage={setResultPage}/>
+          <Deck setShowResultPage={setShowResultPage} incorrectAnswer={incorrectAnswer} setIncorrectAnswer={setIncorrectAnswer}/>
         ) :
-        (resultPage === "sucess")?
-          <Sucess/> 
-          :
-          <Failure/>
+        <Result setDisplay={setDisplay} setShowResultPage={setShowResultPage} incorrectAnswer={incorrectAnswer} setIncorrectAnswer={setIncorrectAnswer}/> 
       }
     </>
   );

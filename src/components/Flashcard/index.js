@@ -2,12 +2,11 @@ import { useState } from "react"
 import turnImg from "../../assets/turn.png"
 import "./style.css"
 
-export default function Card({question, answer, setQuestionIndex, questionIndex, numberOfQuestions, setResultPage}){
+export default function Card({question, answer, setQuestionIndex, questionIndex, numberOfQuestions, setShowResultPage, setIncorrectAnswer, incorrectAnswer}){
   const [showQuestion, setShowQuestion] = useState(true)
   const [showAnswer, setShowAnswer] = useState(false)
   const [borderColor, setBorderColor] = useState("")
   const [nextQuestion, setNextQuestion] = useState(false)
-  const [incorrectAnswer, setIncorrectAnswer] = useState(false)
   let color = ""
 
   function turnFlashcard(){
@@ -20,14 +19,12 @@ export default function Card({question, answer, setQuestionIndex, questionIndex,
     setBorderColor(color)
     setNextQuestion(true)
     if(answer === "incorrect")
-      setIncorrectAnswer(true)
+      setIncorrectAnswer(incorrectAnswer+1)
   }
 
   function showNextQuestion(){
-    if(questionIndex === numberOfQuestions-1){ 
-      if(incorrectAnswer) setResultPage("failure")
-      else setResultPage("sucess")
-    }
+    if(questionIndex === numberOfQuestions-1)
+      setShowResultPage(true)
     else{
       setQuestionIndex(questionIndex + 1)
       setShowAnswer(false)
@@ -50,16 +47,18 @@ export default function Card({question, answer, setQuestionIndex, questionIndex,
       {(nextQuestion)?
         (<div className="arrow" onClick={() => showNextQuestion()} data-identifier="arrow">
           <img src={turnImg} alt="arrow" />
-        </div>):
+        </div>)
+        :
         ((showQuestion)?
           (<div className="arrow" onClick={() => turnFlashcard()} data-identifier="arrow">
             <img src={turnImg} alt="arrow" />
-          </div>) :
+          </div>) 
+          :
           (<div className="buttons">
             <button onClick={() => handleAnswer("neutral")} className="neutral">Aprendi agora</button>
             <button onClick={() => handleAnswer("incorrect")} className="incorrect">Não lembrei</button>
             <button onClick={() => handleAnswer("correct-effort")} className="correct-effort">Lembrei com esforço</button>
-            <button onClick={() => handleAnswer("correct")} className="correct">Zap!</button>
+            <button onClick={() => handleAnswer("correct")} className="correct"><strong>Zap!</strong></button>
           </div>)
         )    
       }
