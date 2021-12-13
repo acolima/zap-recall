@@ -22,6 +22,9 @@
   font-size: 22px;
   font-weight: 400;
   line-height: 26px;
+  text-align: center;
+
+  white-space: pre-wrap;
 }
 
 .result img {

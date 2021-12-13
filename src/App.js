@@ -9,8 +9,8 @@ import "./css/style.css"
 export default function App(){
   const [display, setDisplay] = useState("home");
   const [showResultPage, setShowResultPage] = useState(false)
-  const [incorrectAnswer, setIncorrectAnswer] = useState(0)
   const [goalCorrectAnswer, setGoalCorrectAnswer] = useState("")
+  const [correctAnswer, setCorrectAnswer] = useState(0)
 
   return(
     <>
@@ -24,17 +24,15 @@ export default function App(){
           :
           <Deck 
             setShowResultPage={setShowResultPage} 
-            incorrectAnswer={incorrectAnswer} 
-            setIncorrectAnswer={setIncorrectAnswer} 
-            setGoalCorrectAnswer={setGoalCorrectAnswer}
-            goalCorrectAnswer={goalCorrectAnswer}
+            correctAnswer={correctAnswer}
+            setCorrectAnswer={setCorrectAnswer}
           />
         ) :
         <Result 
           setDisplay={setDisplay} 
-          setShowResultPage={setShowResultPage} 
-          incorrectAnswer={incorrectAnswer} 
-          setIncorrectAnswer={setIncorrectAnswer}
+          setShowResultPage={setShowResultPage}
+          correctAnswer={correctAnswer}
+          setCorrectAnswer={setCorrectAnswer}
           goalCorrectAnswer={goalCorrectAnswer}
           setGoalCorrectAnswer={setGoalCorrectAnswer}
         /> 

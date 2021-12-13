@@ -5,23 +5,23 @@ import failureImg from "../../assets/sad.png"
 
 import "./style.css"
 
-export default function Result({setDisplay, setShowResultPage, incorrectAnswer, setIncorrectAnswer, setCorrectAnswer, goalCorrectAnswer, setGoalCorrectAnswer}){
-  let resultText, resultImg, resultMessage, resultMessageTemp, altImg;
+export default function Result({setDisplay, setShowResultPage, correctAnswer, setCorrectAnswer, goalCorrectAnswer, setGoalCorrectAnswer}){
+  let resultText, resultImg, resultMessage, altImg
 
-  if(incorrectAnswer === 0 && goalCorrectAnswer === 0){ // INCOMPLETO
-    resultText = "PARABÉNS!"
-    resultImg = sucessImg
-    resultMessage = "Você não esqueceu de nenhum flashcard!"
-    altImg = "sucesso"
+  const totalCorrectAnswers = (goalCorrectAnswer - correctAnswer)
+  const resultSucess = (totalCorrectAnswers === 0)
+
+  if(resultSucess){
+     resultText = "PARABÉNS!"
+     resultImg = sucessImg
+     resultMessage = "Você não esqueceu de nenhum flashcard!"
+     altImg = "sucesso"
   }else{
-    resultText = "Putz.."
-    resultImg = failureImg
-    resultMessage = `Você esqueceu ${incorrectAnswer} flashcards.. \n Não desanime! Na próxima você consegue!`
-    altImg = "fracasso"
+     resultText = "Putz.."
+     resultImg = failureImg
+     altImg = "fracasso"
+     resultMessage = `Você esqueceu ${totalCorrectAnswers} flashcards.. \n Não desanime! Na próxima você consegue!`
   }
-
-  console.log(goalCorrectAnswer)
-  //resultMessage = resultMessageTemp.replace("\n", "<br/>")
 
   return(
     <div className="result-page">
@@ -29,7 +29,7 @@ export default function Result({setDisplay, setShowResultPage, incorrectAnswer, 
       <div className="result">
         <div>
           <h1 className="result-header">{resultText}</h1>
-          <img src={resultImg} alt={altImg} />
+          <div><img src={resultImg} alt={altImg} /></div>
         </div>
         <p className="result-message">{resultMessage}</p>
         <Button 
@@ -37,11 +37,10 @@ export default function Result({setDisplay, setShowResultPage, incorrectAnswer, 
           setDisplay={setDisplay} 
           setShowResultPage={setShowResultPage} 
           btnText={"Tentar novamente"} 
-          setIncorrectAnswer={setIncorrectAnswer}
           setCorrectAnswer={setCorrectAnswer}
           setGoalCorrectAnswer={setGoalCorrectAnswer}
         />
-      </div>
+        </div>
     </div>
   )
 }
