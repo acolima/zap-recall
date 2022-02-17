@@ -1,41 +1,40 @@
-import Homepage from "./components/Homepage";
+import Homepage from "./pages/Homepage";
 import Deck from "./components/Deck";
-import Result from "./components/Result"
-import { useState } from "react";
-import "./css/reset.css"
-import "./css/style.css"
+import Result from "./pages/Result"
+import React, { useState } from "react";
 
-
-export default function App(){
+export default function App() {
   const [display, setDisplay] = useState("home");
   const [showResultPage, setShowResultPage] = useState(false)
   const [goalCorrectAnswer, setGoalCorrectAnswer] = useState("")
   const [correctAnswer, setCorrectAnswer] = useState(0)
 
-  return(
+  return (
     <>
-      {(!showResultPage)?
-        ((display === "home")?
-          <Homepage 
-            setDisplay={setDisplay} 
-            goalCorrectAnswer={goalCorrectAnswer} 
+      {!showResultPage &&
+        (display === "home" ?
+          <Homepage
+            setDisplay={setDisplay}
+            goalCorrectAnswer={goalCorrectAnswer}
             setGoalCorrectAnswer={setGoalCorrectAnswer}
           />
           :
-          <Deck 
-            setShowResultPage={setShowResultPage} 
+          <Deck
+            setShowResultPage={setShowResultPage}
             correctAnswer={correctAnswer}
             setCorrectAnswer={setCorrectAnswer}
           />
-        ) :
-        <Result 
-          setDisplay={setDisplay} 
+        )
+      }
+      {showResultPage &&
+        <Result
+          setDisplay={setDisplay}
           setShowResultPage={setShowResultPage}
           correctAnswer={correctAnswer}
           setCorrectAnswer={setCorrectAnswer}
           goalCorrectAnswer={goalCorrectAnswer}
           setGoalCorrectAnswer={setGoalCorrectAnswer}
-        /> 
+        />
       }
     </>
   );

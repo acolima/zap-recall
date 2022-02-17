@@ -1,23 +1,23 @@
 import logoImg from "../../assets/logo.png"
-import Button from "../Button";
+import Button from "../../components/Button"
 import "./style.css"
 
-export default function Homepage({setDisplay, goalCorrectAnswer, setGoalCorrectAnswer}) {
-  return(
+export default function Homepage({ setDisplay, goalCorrectAnswer, setGoalCorrectAnswer }) {
+  return (
     <div className="home">
       <div className="logo">
-        <img src={logoImg} alt="logo"/>
+        <img src={logoImg} alt="logo" />
       </div>
       <div>
         <input className="goal"
           onChange={(e) => setGoalCorrectAnswer(e.target.value)}
-          type="text" 
+          type="text"
           placeholder="Sua meta de zaps"
           value={goalCorrectAnswer}
         />
-        <Button type={"showDeck"} setDisplay={setDisplay} btnText={"Praticar React"}/>
+        <Button type={"showDeck"} setDisplay={setDisplay} btnText={"Praticar React"} />
       </div>
     </div>
-  );
+  )
 }
 
